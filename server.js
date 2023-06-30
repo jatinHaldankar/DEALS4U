@@ -5,23 +5,19 @@ const app = express();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const jwtSecret ='hiiamajatinhaldanakarstudentofldcollegeofengineering';
+require('dotenv').config(); 
 const path=require("path");
+
 app.use(express.static(path.join(__dirname,"/client/build")));
 
 app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirname,"/client/build/index.html"));
 });
 
-
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
 const port = 5000 || process.env.PORT;
-mongoose.connect('mongodb+srv://haldankarjatin:DrgFhWCMs5R7gZiK@cluster0.wddcbrl.mongodb.net/Deals4U');
-
-
-
-
+mongoose.connect(process.env.DB_CONNECTION_URL);
 
 app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Origin", "https://deals4u.onrender.com");
