@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const app = express();
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const jwtSecret ='hiiamajatinhaldanakarstudentofldcollegeofengineering';
 require('dotenv').config(); 
+const jwt = require("jsonwebtoken");
+const jwtSecret =process.env.JWT_SECRET;
 const path=require("path");
 
 app.use(express.static(path.join(__dirname,"/client/build")));
